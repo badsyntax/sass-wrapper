@@ -16,7 +16,7 @@ var sass = new EventEmitter();
  * @param  {object} options - The options passed to the compile method
  * @return {array}
  */
-function args(options) {
+function getArgs(options) {
 
   if (!options.data && !options.filepath) {
     throw new Error('Please either specify a filepath or data string to compile');
@@ -48,11 +48,11 @@ function args(options) {
 
 /**
  * Compiles the sass, either from a filepath or from a data string
- * @param  {object} options - The compile options
+ * @param {object} options - The compile options
  */
 sass.compile = function(options) {
 
-  var child = spawn('sass', args(options));
+  var child = spawn('sass', getArgs(options));
 
   child.stdout.setEncoding('utf8');
   child.stdout.on('data', function (data) {
@@ -69,6 +69,6 @@ sass.compile = function(options) {
     child.stdin.write(options.data);
     child.stdin.end();
   }
-}
+};
 
 module.exports = sass;
