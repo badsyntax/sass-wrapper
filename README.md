@@ -27,3 +27,16 @@ sass.compile({
   type: 'scss' // (optional) 'scss' or 'sass'
 });
 ```
+## Options
+
+```javascript
+{
+  filepath: '/path/to/file.scss',
+  data: '.mysass{.style{color:red}}',
+  type: 'scss', 
+  compass: true,
+  style: 'nested',
+  precision: 3,
+  loadPath: '/path/to/dir'
+}
+```
