@@ -5,7 +5,7 @@ around the sass utility, and thus you need to have sass installed on your system
 
 ## Example
 
-'''javascript
+```javascript
 var sass = require('./sass-wrapper');
 
 sass.on('success', function(data) {
@@ -21,7 +21,7 @@ sass.compile({
   filepath: 'styles.scss'
 });
 
-// Or pass in a string of...
+// Or pass in a string of sass...
 sass.compile({
   data: '.mysass{.important{color:red;}}',
   type: 'scss' // (optional) 'scss' or 'sass'
