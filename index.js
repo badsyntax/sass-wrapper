@@ -1,25 +1,46 @@
 var EventEmitter = require('events').EventEmitter;
+var spawn = require('child_process').spawn;
 var sass = new EventEmitter();
 
 /**
- * Prepare the command arguments
+ * Prepare the command arguments.
+ * Available options:
+ * {
+ *   filepath: '/path/to/file.scss',
+ *   data: '.mysass{.style{color:red}}',
+ *   compass: true,
+ *   style: 'nested',
+ *   precision: 3,
+ *   loadPath: '/path/to/dir'
+ * }
  * @param  {object} options - The options passed to the compile method
  * @return {array}
  */
+function args(options) {
 
-function prepArgs(options) {
+  if (!options.data && !options.filepath) {
+    throw new Error('Please either specify a filepath or data string to compile');
+  }
 
   var args = [];
 
   if (options.filepath) {
     args.push(options.filepath);
-  } else if (options.data) {
-    if (!options.type) {
-      options.type = 'scss';
-    }
-    args.push('--' + options.type);
-  } else {
-    throw new Error('Please either specify a filepath or data string to compile');
+  }
+  if (options.type || options.data) {
+    args.push('--' + (options.type || 'scss'));
+  }
+  if (options.compass) {
+    args.push('--compass');
+  }
+  if (options.style) {
+    args.push('--style', options.style);
+  }
+  if (options.precision) {
+    args.push('--precision', options.precision);
+  }
+  if (options.loadPath) {
+    args.push('--load-path', options.loadPath);
   }
 
   return args;
@@ -29,16 +50,16 @@ function prepArgs(options) {
  * Compiles the sass, either from a filepath or from a data string
  * @param  {object} options - The compile options
  */
+sass.compile = function(options) {
 
-function compile(options) {
+  var child = spawn('sass', args(options));
 
-  var args = prepArgs(options);
-  var child = require('child_process').spawn('sass', args);
-
+  child.stdout.setEncoding('utf8');
   child.stdout.on('data', function (data) {
     sass.emit('success', new Buffer(data).toString('utf8'));
   });
 
+  child.stderr.setEncoding('utf8');
   child.stderr.on('data', function (data) {
     sass.emit('error', new Buffer(data).toString('utf8'));
   });
@@ -50,5 +71,4 @@ function compile(options) {
   }
 }
 
-sass.compile = compile;
 module.exports = sass;
