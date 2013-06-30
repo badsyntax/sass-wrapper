@@ -24,7 +24,7 @@ sass.compile({
 // Or pass in a string of sass...
 sass.compile({
   data: '.mysass{.important{color:red;}}',
-  type: 'scss' // (optional) 'scss' or 'sass'
+  type: 'scss' // {optional} 'scss' or 'sass' (defaults to 'scss')
 });
 ```
 ## Options
