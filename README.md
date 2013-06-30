@@ -10,7 +10,7 @@ around the sass utility, and thus you need to have sass installed on your system
 ## Example
 
 ```javascript
-var sass = require('./sass-wrapper');
+var sass = require('sass-wrapper');
 
 sass.on('success', function(data) {
   console.log(data);
