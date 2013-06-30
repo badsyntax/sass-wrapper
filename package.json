@@ -1,6 +1,6 @@
 {
   "name": "sass-wrapper",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A nodejs module that provides a friendly javascript API for interacting with sass",
   "main": "index.js",
   "scripts": {
