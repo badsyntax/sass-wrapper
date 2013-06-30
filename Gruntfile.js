@@ -10,7 +10,7 @@ module.exports = function(grunt) {
     pkg: grunt.file.readJSON('package.json'),
     jshint: {
       files: {
-        src: ['*.js']
+        src: ['*.js', 'spec/*.js']
       }
     },
     jasmine_node: {
