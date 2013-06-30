@@ -1,12 +1,16 @@
-# sass-wrapper
+# sass-wrapper [![Build Status](https://travis-ci.org/badsyntax/sass-wrapper.png?branch=master)](https://travis-ci.org/badsyntax/sass-wrapper)
 
 A nodejs module that provides a friendly javascript API for compiling sass. This module is simply a wrapper
 around the sass utility, and thus you need to have sass installed on your system to use this module.
 
+## Installation
+
+`npm install sass-wrapper`
+
 ## Example
 
 ```javascript
-var sass = require('./sass-wrapper');
+var sass = require('sass-wrapper');
 
 sass.on('success', function(data) {
   console.log(data);
@@ -27,6 +31,7 @@ sass.compile({
   type: 'scss' // {optional} 'scss' or 'sass' (defaults to 'scss')
 });
 ```
+
 ## Options
 
 ```javascript
@@ -40,3 +45,7 @@ sass.compile({
   loadPath: '/path/to/dir'
 }
 ```
+
+## Tests
+
+Run the tests with `npm test` or `grunt test`.
