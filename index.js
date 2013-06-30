@@ -52,7 +52,9 @@ function getArgs(options) {
  */
 sass.compile = function(options) {
 
-  var child = spawn('sass', getArgs(options));
+  var args = getArgs(options);
+  console.info(args);
+  var child = spawn('sass', args);
 
   child.stdout.setEncoding('utf8');
   child.stdout.on('data', function (data) {
