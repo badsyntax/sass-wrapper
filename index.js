@@ -43,15 +43,15 @@ function compile(options) {
 
   cp.stdout.setEncoding('utf8');
   cp.stdout.on('data', function (data) {
-    if (options.success) {
-      options.success(new Buffer(data).toString('utf8'));
+    if (options.callback) {
+      options.callback(null, new Buffer(data).toString('utf8'));
     }
   });
 
   cp.stderr.setEncoding('utf8');
   cp.stderr.on('data', function (data) {
-    if (options.error) {
-      options.error(new Buffer(data).toString('utf8'));
+    if (options.callback) {
+      options.callback(new Buffer(data).toString('utf8'), null);
     }
   });
 

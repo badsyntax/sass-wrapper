@@ -13,7 +13,7 @@ describe('Sass-Wrapper', function() {
 
     sass.compile({
       filepath: path.join(__dirname, 'example.scss'),
-      success: function(data) {
+      callback: function(err, data) {
         d = data;
       }
     });
@@ -33,7 +33,7 @@ describe('Sass-Wrapper', function() {
 
     sass.compile({
       data: '$blue:#3bbfce;$margin:16px;.content-navigation{border-color:$blue;color:darken($blue,9%);.border{padding:$margin/2;margin:$margin/2;border-color:$blue;}}',
-      success: function(data) {
+      callback: function(err, data) {
         d = data;
       }
     });
