@@ -1,18 +1,5 @@
-var EventEmitter = require('events').EventEmitter;
-var spawn = require('child_process').spawn;
-var sass = new EventEmitter();
-
 /**
  * Prepare the command arguments.
- * Available options:
- * {
- *   filepath: '/path/to/file.scss',
- *   data: '.mysass{.style{color:red}}',
- *   compass: true,
- *   style: 'nested',
- *   precision: 3,
- *   loadPath: '/path/to/dir'
- * }
  * @param  {object} options - The options passed to the compile method
  * @return {array}
  */
@@ -50,25 +37,31 @@ function getArgs(options) {
  * Compiles the sass, either from a filepath or from a data string
  * @param {object} options - The compile options
  */
-sass.compile = function(options) {
+function compile(options) {
 
-  var child = spawn('sass', getArgs(options));
+  var cp = require('child_process').spawn('sass', getArgs(options));
 
-  child.stdout.setEncoding('utf8');
-  child.stdout.on('data', function (data) {
-    sass.emit('success', new Buffer(data).toString('utf8'));
+  cp.stdout.setEncoding('utf8');
+  cp.stdout.on('data', function (data) {
+    if (options.success) {
+      options.success(new Buffer(data).toString('utf8'));
+    }
   });
 
-  child.stderr.setEncoding('utf8');
-  child.stderr.on('data', function (data) {
-    sass.emit('error', new Buffer(data).toString('utf8'));
+  cp.stderr.setEncoding('utf8');
+  cp.stderr.on('data', function (data) {
+    if (options.error) {
+      options.error(new Buffer(data).toString('utf8'));
+    }
   });
 
   if (options.data) {
-    child.stdin.setEncoding('utf8');
-    child.stdin.write(options.data);
-    child.stdin.end();
+    cp.stdin.setEncoding('utf8');
+    cp.stdin.write(options.data);
+    cp.stdin.end();
   }
-};
+}
 
-module.exports = sass;
+module.exports = {
+  compile: compile
+};

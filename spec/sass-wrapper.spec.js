@@ -11,12 +11,11 @@ describe('Sass-Wrapper', function() {
 
     var d;
 
-    sass.on('success', function(data) {
-      d = data;
-    });
-
     sass.compile({
-      filepath: path.join(__dirname, 'example.scss')
+      filepath: path.join(__dirname, 'example.scss'),
+      success: function(data) {
+        d = data;
+      }
     });
 
     waitsFor(function() {
@@ -32,12 +31,11 @@ describe('Sass-Wrapper', function() {
 
     var d;
 
-    sass.on('success', function(data) {
-      d = data;
-    });
-
     sass.compile({
-      data: '$blue:#3bbfce;$margin:16px;.content-navigation{border-color:$blue;color:darken($blue,9%);.border{padding:$margin/2;margin:$margin/2;border-color:$blue;}}'
+      data: '$blue:#3bbfce;$margin:16px;.content-navigation{border-color:$blue;color:darken($blue,9%);.border{padding:$margin/2;margin:$margin/2;border-color:$blue;}}',
+      success: function(data) {
+        d = data;
+      }
     });
 
     waitsFor(function() {
