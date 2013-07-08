@@ -12,23 +12,29 @@ around the sass utility, and thus you need to have sass installed on your system
 ```javascript
 var sass = require('sass-wrapper');
 
-sass.on('success', function(data) {
-  console.log(data);
-});
-
-sass.on('error', function(err) {
-  console.log(err);
-});
-
 // You can specify a filepath to compile...
 sass.compile({
-  filepath: 'styles.scss'
+  filepath: 'styles.scss',
+  complete: function(err, data) {
+    if (err) {
+      console.log(err);
+      throw err;
+    }
+    console.log(data);
+  }
 });
 
 // Or pass in a string of sass...
 sass.compile({
   data: '.mysass{.important{color:red;}}',
-  type: 'scss' // {optional} 'scss' or 'sass' (defaults to 'scss')
+  type: 'scss', // {optional} 'scss' or 'sass' (defaults to 'scss')
+  complete: function(err, data) {
+    if (err) {
+      console.log(err);
+      throw err;
+    }
+    console.log(data);
+  }
 });
 ```
 
