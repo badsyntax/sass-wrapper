@@ -1,26 +1,26 @@
 {
-  "name": "sass-wrapper",
-  "version": "0.0.3",
-  "description": "A nodejs module that provides a friendly javascript API for interacting with sass",
-  "main": "index.js",
-  "scripts": {
-    "test": "grunt test --verbose"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git@github.com:badsyntax/sass-wrapper.git"
-  },
-  "keywords": [
-    "sass"
-  ],
-  "author": "Richard Willis <willis.rh@gmail.com> (https://github.com/badsyntax)",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/badsyntax/sass-wrapper/issues"
-  },
-  "devDependencies": {
-    "grunt": "~0.4.1",
-    "grunt-jasmine-node": "~0.1.0",
-    "grunt-contrib-jshint": "~0.6.0"
-  }
+	"name": "sass-wrapper",
+	"version": "0.0.4",
+	"description": "A nodejs module that provides a friendly javascript API for interacting with sass",
+	"main": "index.js",
+	"scripts": {
+		"test": "grunt test --verbose"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git@github.com:badsyntax/sass-wrapper.git"
+	},
+	"keywords": [
+		"sass"
+	],
+	"author": "Richard Willis <willis.rh@gmail.com> (https://github.com/badsyntax)",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/badsyntax/sass-wrapper/issues"
+	},
+	"devDependencies": {
+		"grunt": "~0.4.1",
+		"grunt-jasmine-node": "~0.1.0",
+		"grunt-contrib-jshint": "~0.6.0"
+	}
 }
