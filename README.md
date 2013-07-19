@@ -15,7 +15,7 @@ var sass = require('sass-wrapper');
 // You can specify a filepath to compile...
 sass.compile({
   filepath: 'styles.scss',
-  complete: function(err, data) {
+  callback: function(err, data) {
     if (err) {
       console.log(err);
       throw err;
@@ -28,7 +28,7 @@ sass.compile({
 sass.compile({
   data: '.mysass{.important{color:red;}}',
   type: 'scss', // {optional} 'scss' or 'sass' (defaults to 'scss')
-  complete: function(err, data) {
+  callback: function(err, data) {
     if (err) {
       console.log(err);
       throw err;
