@@ -51,7 +51,7 @@ function compile(options) {
   cp.stderr.setEncoding('utf8');
   cp.stderr.on('data', function (data) {
     if (options.callback) {
-      options.callback(new Buffer(data).toString('utf8'), null);
+      options.callback(new Error(new Buffer(data).toString('utf8')), null);
     }
   });
 

@@ -46,4 +46,24 @@ describe('Sass-Wrapper', function() {
       expect(d.replace(/\s*/g, '')).toEqual('.content-navigation{border-color:#3bbfce;color:#2ca2af;}.content-navigation.border{padding:8px;margin:8px;border-color:#3bbfce;}');
     });
   });
+
+  it('Should pass an error object to the callback function if it fails to compile', function() {
+
+    var e;
+
+    sass.compile({
+      data: '@import "null";',
+      callback: function(err, data) {
+        e = err;
+      }
+    });
+
+    waitsFor(function() {
+      return !!e;
+    }, "Could not compile the sass", 2000);
+
+    runs(function () {
+      expect(e instanceof Error).toBe(true);
+    });
+  });
 });
